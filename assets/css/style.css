@@ -1,0 +1,28 @@
+body {
+	background-image: url('../images/backg.jpg');
+	width:100%;
+}
+.containerControl {
+	max-width: 600px;
+	height:auto;
+	width:100%;
+	padding: 51px 51px 350px 51px;
+	background-color: white;
+	margin-left: 100px;
+	margin-top: 50px;
+}
+
+.pictureFix {
+	border:25px solid grey;
+	margin-left:25px;
+}
+.sideOne {
+	margin-top: 89px;
+	float:left;
+}
+.sideTwo {
+	float:right;
+	margin-top: 106px;
+	font-size: 14px;
+	line-height: 24px;
+}
