@@ -1,18 +1,8 @@
-//Array of words for the computer to chose from related to delicious
-// desserts.
-var gameChoices = [
-					["C","H","O","C","O","L","A","T","E"], 
-					["C","U","P","C","A","K","E"],
-					["P","U","D","D","I","N","G",],
-					["I","C","E","C","R","E","A","M",],
-					["D","O","U","G","H","N","U","T",],
-					["B","R","O","W","N","I","E",],
-					["C","O","O","K","I","E","S",],
-					["F","R","O","Y","O"]
-					];
+//Array of words for the computer to chose from related to delicious desserts.
+var gameChoices = [ "CHOCOLATE", "CUPCAKE", "PUDDING", "ICECREAM", "DOUGHNUT", "BROWNIE", "COOKIES", "FROYO"];										
 
 // This array will help make sure a real letter is pressed
-var alphabetChoices = ["A","B","C","D","E","F","G","H",
+var letterQ = ["A","B","C","D","E","F","G","H",
 "I","J","K","L","M","N","O","P",
 "Q","R","S","T","U","V","W","X",
 "Y","Z"];
@@ -20,57 +10,106 @@ var alphabetChoices = ["A","B","C","D","E","F","G","H",
 var wins = 0;
 var guesses = 15;
 var losses = 0;
-var unsolvedWord;
-// var displayBlank;
+var solvedWord;
+var unsolvedDisplay;
+var userAnswerUnsolved = [];
 
 
 
 //Function for selecting random choice from array
-	function compWordChoice() {
-		unsolvedWord = gameChoices [Math.floor(Math.random() * gameChoices.length)];
-		console.log(unsolvedWord);
+function compWordChoice() {
+	unsolvedWord = gameChoices [Math.floor(Math.random() * gameChoices.length)];
+	console.log(unsolvedWord);
+}
+// This function checks userGuess to unsovled word
+function checkGuess () {
+	for (i = 0; i < unsolvedWord.length; i++) {
+		unsolvedWord.includes(userGuess) {
+			console.log("That is a letter in the Word")
+		}
 	}
-compWordChoice();
+	else {
+		console.log("That is not a letter int he word")
+	}
+}
 
-//For loop that creates blank spaces for the random word
-// Does this need to be a Function that is called each time the copmuter chooses the word.
- //    for (i = 0; i < unsolvedWord.length; i++) {
-	// 	unsolvedWord[i] = "_";
-	// 	console.log(userAnswerUnsolved);
+// Function to compare userGuess to letterQ
+function isaLetter () {
+	for (i = 0; i < letterQ.length; i++) {
+		letterQ.includes(userGuess) {
+			checkGuess(userGuess);
+		}
+	}
+}
+
+
+	// Printing guess field
+	// function printWord () {
+	// 	for (i = 0; i < unsolvedWord.length; i++) {
+	// 		var wordControl = document.getElementById("wordControl");
+	// 		wordControl.innerHtml = unsolvedWord[i];
+	// 	}	
 	// }
-
+	
+	
+	
 
 //This dictates the users input
-	document.onkeyup = function(event){
+document.onkeyup = function(event){
 	// Determine what user presses by storing it
 	var userGuess = event.key;
 	userGuess = userGuess.toUpperCase();
-	typedLetter = false;
 	console.log(userGuess);
-	
-	
-//Now let the magic begin.
-	
-	if (unsolvedWord.includes(userGuess)) {
-		console.log("That was a letter in the word");
-	}
-	else {
-		guesses--;
-		console.log(guesses);
-		console.log("That was not a letter in the word");
-		
-		
-	}
-	// This is where I put the HTML modification code
-	var html = "<p>Choose a letter to determine if you can solve the word above.</p>" + 
-	"<p>Wins: " + wins + "</p>" +
-	"<p>Losses: " + losses + "</p>" +
-	"<p>Guesses Left: " + guesses + "</p>";
-	document.querySelector("#displayHtml").innerHTML = html;
-	typedLetter = true;
+
 	
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+// Working Code I am commenting out and writing a function.
+	// Forces user to choose a letter
+	// if (letterQ.includes(userGuess)) {
+
+// Working Code trying to start with a function
+//Now let the magic begin.
+
+// if (unsolvedWord.includes(userGuess)) {
+// 	console.log("That was a letter in the word");
+// }
+// else {
+// 	guesses--;
+// 	console.log(guesses);
+// 	console.log("That was not a letter in the word");
+
+
+// }
+
+// }
+// else {
+// 	console.log("That is not a letter choice");
+// }
+// if (guesses < 1){
+// 	alert("You lose.  Try another word");
+// 	guesses = 15;
+// 	losses++;
+// 	compWordChoice();
+// 	console.log(guesses);
+// 	console.log(losses);
+// 	console.log(unsolvedWord)
+// }
+
+
+
+// }
 
 
 

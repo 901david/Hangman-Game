@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script rel="javascript" type="text/javascript" src="assets/javascript/game2.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<title>The Hang-Man Game</title>
 </head>
 <body>
@@ -25,7 +26,7 @@
 		<p>Choose a letter to determine if you can solve the word above.</p>
 		<p>Wins: 0</p>
 		<p>Losses: 0</p>
-		<p>Guesses Left: 15</p>
+		<p>Guesses Left: <span class="guessNum">15</span></p>
 		<div>
 		<p>Letters you have already chosen: <p id="displayletter"></p></p>
 		</div>
