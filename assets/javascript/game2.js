@@ -11,7 +11,7 @@ var wins = 0;
 var guesses = 15;
 var losses = 0;
 var solvedWord;
-var unsolvedDisplay;
+var unsolvedWord;
 var userAnswerUnsolved = [];
 
 
@@ -24,23 +24,26 @@ function compWordChoice() {
 // This function checks userGuess to unsovled word
 function checkGuess () {
 	for (i = 0; i < unsolvedWord.length; i++) {
-		unsolvedWord.includes(userGuess) {
+		var n = (unsolvedWord.includes(userGuess)) 
+		}
+		if (n === true) {			
+
 			console.log("That is a letter in the Word")
 		}
-	}
+	
 	else {
 		console.log("That is not a letter int he word")
 	}
 }
 
 // Function to compare userGuess to letterQ
-function isaLetter () {
-	for (i = 0; i < letterQ.length; i++) {
-		letterQ.includes(userGuess) {
-			checkGuess(userGuess);
-		}
-	}
-}
+// function isaLetter () {
+// 	for (i = 0; i < letterQ.length; i++) {
+// 		letterQ.includes(userGuess) {
+// 			checkGuess(userGuess);
+// 		}
+// 	}
+// }
 
 
 	// Printing guess field
@@ -60,6 +63,7 @@ document.onkeyup = function(event){
 	var userGuess = event.key;
 	userGuess = userGuess.toUpperCase();
 	console.log(userGuess);
+	checkGuess();
 
 	
 
@@ -110,7 +114,7 @@ document.onkeyup = function(event){
 
 
 // }
-
+}
 
 
 
