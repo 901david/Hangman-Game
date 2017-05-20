@@ -53,7 +53,7 @@ function printDash() {
 			$("#displayHtml").html("<p>Choose a letter to determine if you can solve the word above.</p>" +
 						"<p>Wins: " + wins + "</p>" +
 						"<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + guessesLeft + "<p>Letters you have already chosen: " + 
-						keysPressed + " </p>");
+						keysPressed + "</p>");
 				
 	}
 // This function will check the status of the game and determine if we have a winner
@@ -68,13 +68,8 @@ function checkGameStatus () {
 	if (youWin) {
 		wins++;
 		console.log("You win. WINS:  " + wins);
-		for(var i = 0; i < gameStatus.length; i++) {
-			if (gameStatus[i] === ["F", "R", "O", "Y", "O"]) {
-			alert("This could be a picture");
-		}
-		}
-
-	}
+		whatPicture();
+}
 	else if (gameStatus[i] !== userGuess) {
 		guessesLeft--;
 		console.log("GuessesLeft:  "+ guessesLeft);
@@ -85,6 +80,7 @@ function checkGameStatus () {
 		console.log("You lose. LOSSES:  " + losses);
 	}
 }
+// This function currently not being used but I might end up using it
 function doesGuessHurtYou() {
 	for(var i = 0; i < gameStatus.length; i++) {
 		if(gameStatus[i] == userGuess) {
@@ -96,12 +92,40 @@ function doesGuessHurtYou() {
 		}
 	}
 }
+// This function will determine which index value the word was and try to associate that value with a picture
+function whatPicture() {
+	if (unsolvedWord === gameChoices[0]) {
+		$(".imageSwitch").attr("src", "assets/images/chocolate.jpg");
+	}
+	else if (unsolvedWord === gameChoices[1]) {
+		$(".imageSwitch").attr("src", "assets/images/cupcake.jpg");
+	}
+	else if (unsolvedWord === gameChoices[2]) {
+		$(".imageSwitch").attr("src", "assets/images/pudding.jpeg");
+	}
+	else if (unsolvedWord === gameChoices[3]) {
+		$(".imageSwitch").attr("src", "assets/images/icecream.jpg");
+	}
+	else if (unsolvedWord === gameChoices[4]) {
+		$(".imageSwitch").attr("src", "assets/images/doughnut.jpg");
+	}
+	else if (unsolvedWord === gameChoices[5]) {
+		$(".imageSwitch").attr("src", "assets/images/brownie.jpg");
+	}
+	else if (unsolvedWord === gameChoices[6]) {
+		$(".imageSwitch").attr("src", "assets/images/cookies.jpg");
+	}
+	else if (unsolvedWord === gameChoices[7]) {
+		$(".imageSwitch").attr("src", "assets/images/frozen.jpg");
+	}
+}
 
 
 $(document).ready(function(){
 
 		// Starting the actual game portion
 		$("#start").on("click", function startGame() {
+		$(".imageSwitch").attr("src", "");
 		gameStatus = [];
 		keysPressed = [];
 		guessesLeft = 15;
@@ -124,6 +148,11 @@ $(document).ready(function(){
 		// Forces user to choose a letter
 		if (event.keyCode >= 65 && event.keyCode <= 90) {
     	console.log("You made a valid selection.");
+    	// if (keysPressed.includes(event.keyCode)) || gameStatus.includes(event.keyCode) {
+    	// 	alert("You pressed that already");
+    	// }
+    	// else {
+
     	checkGuess();
     	checkGameStatus();
     	printDash();
@@ -132,7 +161,7 @@ $(document).ready(function(){
 			console.log("That is not a letter choice");
 		}
     	if (wordSplit.includes(userGuess)) {
-    		console.log("I will do nothing");
+    		console.log("THat letter will not go to the screen because it was in the word");
     	}
 		else {
 			keysPressed.push(userGuess);

@@ -20,8 +20,10 @@ body {
 
 
 #pictureFix {
-	border:25px solid grey;
+	
 	margin-left:25px;
+	width: 250px;
+	height:auto;
 }
 
 #start {
