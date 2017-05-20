@@ -12,7 +12,7 @@ var length; //Length of randomly chosen word
 var keysPressed = []; //This willmstore the letters already chosen
 var userGuess; //This is the users key press
 var gameStatus = []; //This contains the underlines of the unsolved word
-
+var shouldISubtractAGuess;
 
 
 
@@ -37,7 +37,10 @@ function checkGuess() {
 		else {
 		console.log("That was not a letter in the word.")
 		}
+		// doesGuessHurtYou();
 		}
+		
+
 		
 }
 // This function creates dashes in a new array for the given word
@@ -51,9 +54,9 @@ function createDashes () {
 function printDash() {
 			$("#wordControl").html(gameStatus);
 			$("#displayHtml").html("<p>Choose a letter to determine if you can solve the word above.</p>" +
-						"<p>Wins: " + wins + "</p>" +
-						"<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + guessesLeft + "<p>Letters you have already chosen: " + 
-						keysPressed + "</p>");
+			"<p>Wins: " + wins + "</p>" +
+			"<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + guessesLeft + "<p>Letters you have already chosen: " + 
+			keysPressed + "</p>");
 				
 	}
 // This function will check the status of the game and determine if we have a winner
@@ -67,6 +70,8 @@ function checkGameStatus () {
 
 	if (youWin) {
 		wins++;
+		$(".wonkaPicture").attr("src", "assets/images/youwin.jpg");
+		$(".winAudio").attr("src", "assets/audio/youwin.mp3");
 		console.log("You win. WINS:  " + wins);
 		whatPicture();
 }
@@ -77,19 +82,24 @@ function checkGameStatus () {
 	
 	if (guessesLeft <= 0) {
 		losses++;
+		$(".wonkaPicture").attr("src", "assets/images/youlose.jpg");
+		$(".winAudio").attr("src", "assets/audio/yougetnothing.mp3");
 		console.log("You lose. LOSSES:  " + losses);
+		guessesLeft = 15;
+		keysPressed = [];
 	}
 }
 // This function currently not being used but I might end up using it
 function doesGuessHurtYou() {
+	shouldISubtractAGuess = true;
 	for(var i = 0; i < gameStatus.length; i++) {
-		if(gameStatus[i] == userGuess) {
+		if(gameStatus[i] === userGuess) {
 			console.log("I will do nothing");
-		}
-		else{
-			guessesLeft--;
-
-		}
+			shouldISubtractAGuess = false;
+		}	
+	}
+	if (shouldISubtractAGuess = true) {
+		guessesLeft--;
 	}
 }
 // This function will determine which index value the word was and try to associate that value with a picture
@@ -124,7 +134,10 @@ function whatPicture() {
 $(document).ready(function(){
 
 		// Starting the actual game portion
+		
 		$("#start").on("click", function startGame() {
+		$(".wonkaPicture").attr("src", "");
+		$(".winaudio").attr("src", "");
 		$(".imageSwitch").attr("src", "");
 		gameStatus = [];
 		keysPressed = [];

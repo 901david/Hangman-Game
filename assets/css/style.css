@@ -1,6 +1,6 @@
 body {
 	background-image: url('../images/backg.jpg');
-	width:100%;
+	background-size: cover;
 	background-repeat: no-repeat;
 }
 .headerTextOne {
@@ -49,4 +49,12 @@ body {
 #wordControl {
 	font-size: 18px;
 	color: black;
+}
+#picFix {
+	width:200px;
+	height:auto;
+	
+}
+audio {
+	display: hidden;
 }
