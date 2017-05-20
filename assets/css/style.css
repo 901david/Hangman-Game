@@ -1,6 +1,7 @@
 body {
 	background-image: url('../images/backg.jpg');
 	width:100%;
+	background-repeat: no-repeat;
 }
 .headerTextOne {
 	font-weight: bold;
@@ -32,7 +33,7 @@ body {
 	margin-left: 100px;
 }
 .borderFix {
-	border:2px solid #DDDDDD;
+	border:10px solid #DDDDDD;
 	padding: 25px;
 	background-color: white;
 	margin-bottom: 25px;
