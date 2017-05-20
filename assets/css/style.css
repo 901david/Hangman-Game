@@ -2,34 +2,48 @@ body {
 	background-image: url('../images/backg.jpg');
 	width:100%;
 }
-.containerControl {
-	max-width: 600px;
-	height:auto;
-	width:100%;
-	padding: 51px 51px 350px 51px;
-	background-color: white;
-	margin-left: 100px;
-	margin-top: 50px;
+.headerTextOne {
+	font-weight: bold;
+	font-size: 24px;
+	white-space: nowrap;
+	color:cornflowerblue;
 }
+#displayHtml {
+	margin-top: 15px;
+}
+#displayHtml p {
+	font-size: 20px;
+	line-height: 24px;
+	color:red;
+} 
+	
+
 
 #pictureFix {
 	border:25px solid grey;
 	margin-left:25px;
 }
-.sideOne {
-	margin-top: 89px;
-	float:left;
-}
-.sideTwo {
-	float:right;
-	margin-top: 106px;
-	font-size: 14px;
-	line-height: 24px;
-}
+
 #start {
 	width:65px;
 	height:auto;
-	position:relative;
-	bottom:200px;
-	left:115px;
+	margin-left: 100px;
+}
+.borderFix {
+	border:2px solid #DDDDDD;
+	padding: 25px;
+	background-color: white;
+	margin-bottom: 25px;
+	margin-top: 100px;
+}
+.row {
+	margin-top: 100px;
+}
+.rules {
+	font-size: 14px;
+	color:cornflowerblue;
+}
+#wordControl {
+	font-size: 18px;
+	color: black;
 }

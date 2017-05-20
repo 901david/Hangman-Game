@@ -14,11 +14,7 @@ var userGuess; //This is the users key press
 var gameStatus = []; //This contains the underlines of the unsolved word
 
 
-//Getting elements from the page
-var showLetters = document.getElementById("#displayLetter"); 
-var showScores = document.getElementById("#displayHtml");
-var displayWord = document.getElementById("#wordControl");
-var displayPicture = document.getElementById("pictureFix");
+
 
 
 //Function for selecting random choice from array
@@ -44,26 +40,75 @@ function checkGuess() {
 		}
 		
 }
+// This function creates dashes in a new array for the given word
 function createDashes () {
 	for (i = 0; i < wordSplit.length; i++) {
 		gameStatus[i] = "_ ";	
 	}
 	console.log(gameStatus);
 }
-	function printDash() {
-		for (i = 0; i < wordSplit.length; i++) {
-			$("#wordControl").append(wordsplit[i]);
+// This function will print the dashes on the screen
+function printDash() {
+			$("#wordControl").html(gameStatus);
+			$("#displayHtml").html("<p>Choose a letter to determine if you can solve the word above.</p>" +
+						"<p>Wins: " + wins + "</p>" +
+						"<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + guessesLeft + "<p>Letters you have already chosen: " + 
+						keysPressed + " </p>");
+				
+	}
+// This function will check the status of the game and determine if we have a winner
+function checkGameStatus () {
+	var youWin = true;
+	for (var i = 0; i < wordSplit.length; i++) {
+		if (gameStatus[i] === "_ ") {
+			youWin = false;
 		}
 	}
 
+	if (youWin) {
+		wins++;
+		console.log("You win. WINS:  " + wins);
+		for(var i = 0; i < gameStatus.length; i++) {
+			if (gameStatus[i] === ["F", "R", "O", "Y", "O"]) {
+			alert("This could be a picture");
+		}
+		}
+
+	}
+	else if (gameStatus[i] !== userGuess) {
+		guessesLeft--;
+		console.log("GuessesLeft:  "+ guessesLeft);
+	}
+	
+	if (guessesLeft <= 0) {
+		losses++;
+		console.log("You lose. LOSSES:  " + losses);
+	}
+}
+function doesGuessHurtYou() {
+	for(var i = 0; i < gameStatus.length; i++) {
+		if(gameStatus[i] == userGuess) {
+			console.log("I will do nothing");
+		}
+		else{
+			guessesLeft--;
+
+		}
+	}
+}
 
 
-
+$(document).ready(function(){
 
 		// Starting the actual game portion
-		
+		$("#start").on("click", function startGame() {
+		gameStatus = [];
+		keysPressed = [];
+		guessesLeft = 15;
 		compWordChoice();
 		createDashes();
+		printDash();
+	});
 		
 		
 
@@ -73,26 +118,32 @@ function createDashes () {
 		// Determine what user presses by storing it
 		userGuess = event.key;
 		userGuess = userGuess.toUpperCase();
+		
 		console.log(userGuess);
+		
 		// Forces user to choose a letter
 		if (event.keyCode >= 65 && event.keyCode <= 90) {
     	console.log("You made a valid selection.");
     	checkGuess();
-		}
-		else {
+    	checkGameStatus();
+    	printDash();
+    	}
+    	else {
 			console.log("That is not a letter choice");
 		}
-			if (guessesLeft < 1){
-			alert("You lose.  Try another word");
-			guessesLeft = 15;
-			losses++;
-			compWordChoice();
-			console.log(guessesLeft);
-			console.log(losses);
-			console.log(unsolvedWord)
+    	if (wordSplit.includes(userGuess)) {
+    		console.log("I will do nothing");
+    	}
+		else {
+			keysPressed.push(userGuess);
+    		printDash();
 		}
+		
+			
 
 		}
+
+});
 		
 
 		
