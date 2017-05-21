@@ -12,7 +12,8 @@ var length; //Length of randomly chosen word
 var keysPressed = []; //This willmstore the letters already chosen
 var userGuess; //This is the users key press
 var gameStatus = []; //This contains the underlines of the unsolved word
-var shouldISubtractAGuess;
+var shouldISubtractAGuess = true;
+var keysLocked = true;
 
 
 
@@ -73,32 +74,36 @@ function checkGameStatus () {
 		$(".wonkaPicture").attr("src", "assets/images/youwin.jpg");
 		$(".winAudio").attr("src", "assets/audio/youwin.mp3");
 		console.log("You win. WINS:  " + wins);
+		keysLocked = true;
 		whatPicture();
 }
-	else if (gameStatus[i] !== userGuess) {
-		guessesLeft--;
-		console.log("GuessesLeft:  "+ guessesLeft);
-	}
+	// else if (gameStatus[i] !== userGuess) {
+	// 	guessesLeft--;
+	// 	console.log("GuessesLeft:  "+ guessesLeft);
+	// }
 	
 	if (guessesLeft <= 0) {
 		losses++;
 		$(".wonkaPicture").attr("src", "assets/images/youlose.jpg");
 		$(".winAudio").attr("src", "assets/audio/yougetnothing.mp3");
 		console.log("You lose. LOSSES:  " + losses);
+		keysLocked = true;
 		guessesLeft = 15;
 		keysPressed = [];
 	}
 }
 // This function currently not being used but I might end up using it
 function doesGuessHurtYou() {
-	shouldISubtractAGuess = true;
-	for(var i = 0; i < gameStatus.length; i++) {
-		if(gameStatus[i] === userGuess) {
-			console.log("I will do nothing");
+	if (shouldISubtractAGuess) {
+		for(var i = 0; i < gameStatus.length; i++) {
+		if(gameStatus[i].includes(userGuess)) {
+			console.log("It Doesn't look like I should subtract a guess.");
 			shouldISubtractAGuess = false;
 		}	
-	}
-	if (shouldISubtractAGuess = true) {
+		}
+		}
+		else  {
+		console.log("It Does look like I should subtract a guess.");
 		guessesLeft--;
 	}
 }
@@ -139,6 +144,7 @@ $(document).ready(function(){
 		$(".wonkaPicture").attr("src", "");
 		$(".winaudio").attr("src", "");
 		$(".imageSwitch").attr("src", "");
+		keysLocked = false;
 		gameStatus = [];
 		keysPressed = [];
 		guessesLeft = 15;
@@ -147,39 +153,49 @@ $(document).ready(function(){
 		printDash();
 	});
 		
+			//This dictates the users input
+			document.onkeyup = function(event){
+			if (keysLocked) {
+			alert("You have not pressed the start button yet.");
+		}
 		
+			else { 
+		
+				// Determine what user presses by storing it
+				userGuess = event.key;
+				userGuess = userGuess.toUpperCase();
+				
+				console.log(userGuess);
+				
+				// Forces user to choose a letter
+				if (event.keyCode >= 65 && event.keyCode <= 90) {
+		    	console.log("You made a letter selection I would consider valid!");
+		    	// if (keysPressed.includes(event.keyCode)) || gameStatus.includes(event.keyCode) {
+		    	// 	alert("You pressed that already");
+		    	// }
+		    	// else {
 
+		    	checkGuess();
+		    	checkGameStatus();
+		    	doesGuessHurtYou()
+		    	printDash();
+		    	}
+		    	else {
+					alert("That is not a letter choice");
+				}
+		    	if (wordSplit.includes(userGuess)) {
+		    		console.log("That letter will not go to the screen because it was in the word");
+		    	}
+		    	else if (!(event.keyCode >= 65 && event.keyCode <= 90)) {
+		    		console.log("That letter will not go to the screen because it is not a letter");
+		    	}
+				else {
+					keysPressed.push(userGuess);
+		    		printDash();
+				}
+				
+				
 
-		//This dictates the users input
-		document.onkeyup = function(event){
-		// Determine what user presses by storing it
-		userGuess = event.key;
-		userGuess = userGuess.toUpperCase();
-		
-		console.log(userGuess);
-		
-		// Forces user to choose a letter
-		if (event.keyCode >= 65 && event.keyCode <= 90) {
-    	console.log("You made a valid key selection.");
-   			if (keysPressed.includes(userGuess)) {
-			alert("You already chose that letter.");
 			}
-			else if (wordSplit.includes(userGuess)) {
-    		console.log("THat letter will not go to the screen because it was in the word");
-    		}
-    		else if (gameStatus.includes(userGuess)) {
-    			alert("You already chose that letter.")
-    		}
-			else {
-			keysPressed.push(userGuess);
-    		checkGuess();
-    		checkGameStatus();
-    		printDash();
-    	}
-    	}
-    	else {
-			console.log("That is not a letter choice");
 		}
-		}
-
 });
