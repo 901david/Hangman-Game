@@ -36,7 +36,8 @@ function checkGuess() {
 		}
 		
 		else {
-		console.log("That was not a letter in the word.")
+		console.log("That was not a letter in the word.");
+		shouldISubtractAGuess = true;
 		}
 		// doesGuessHurtYou();
 		}
@@ -94,19 +95,17 @@ function checkGameStatus () {
 }
 // This function currently not being used but I might end up using it
 function doesGuessHurtYou() {
-	if (shouldISubtractAGuess) {
 		for(var i = 0; i < gameStatus.length; i++) {
 		if(gameStatus[i].includes(userGuess)) {
 			console.log("It Doesn't look like I should subtract a guess.");
 			shouldISubtractAGuess = false;
 		}	
 		}
-		}
-		else  {
-		console.log("It Does look like I should subtract a guess.");
+		if (shouldISubtractAGuess) {
 		guessesLeft--;
 	}
-}
+	}
+
 // This function will determine which index value the word was and try to associate that value with a picture
 function whatPicture() {
 	if (unsolvedWord === gameChoices[0]) {
