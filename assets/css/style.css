@@ -1,7 +1,6 @@
 body {
 	background-image: url('../images/backg.jpg');
 	background-size: cover;
-	background-repeat: no-repeat;
 }
 .headerTextOne {
 	font-weight: bold;
@@ -17,9 +16,6 @@ body {
 	line-height: 24px;
 	color:red;
 } 
-	
-
-
 #pictureFix {
 	
 	margin-left:25px;
@@ -30,31 +26,35 @@ body {
 #start {
 	width:65px;
 	height:auto;
-	margin-left: 100px;
+	margin-left: 175px;
 }
 .borderFix {
 	border:10px solid #DDDDDD;
 	padding: 25px;
 	background-color: white;
-	margin-bottom: 25px;
-	margin-top: 100px;
 }
-.row {
-	margin-top: 100px;
-}
+
 .rules {
-	font-size: 14px;
-	color:cornflowerblue;
+	font-size: 18px;
+	color:black;
 }
 #wordControl {
-	font-size: 18px;
+	font-size: 28px;
 	color: black;
 }
-#picFix {
-	width:200px;
+
+.moveDown {
+	margin-top: 25px;
+}
+.wonkaPicture {
 	height:auto;
-	
+	width:250px;
+	margin-left: auto;
+	margin-right: auto;
 }
-audio {
-	display: hidden;
+h1 {
+	text-align: center;
+
 }
+
+

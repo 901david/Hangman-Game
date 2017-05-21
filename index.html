@@ -9,43 +9,57 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script rel="javascript" type="text/javascript" src="assets/javascript/game4.js"></script>
+	<script rel="javascript" type="text/javascript" src="assets/javascript/game.js"></script>
 	<title>The Hang-Man Game</title>
 </head>
 <body>
 	<!--This container will encompass the entire page-->
 	<div class="container">
+	<div class="jumbotron">
+	<h1>Desserts Hang-Man</h1>
+	</div>
+	<div class="row">
+			<div class="col-xs-12 col-s-12 col-md-12 col-lg-12">
+			<img id="picFix" class="wonkaPicture img-responsive">
+			</div>
+		</div>
+	<div>
+
 		<div class="row">
 			<div class="col-xs-12 col-s-12 col-md-12 col-lg-12 media borderFix">
-				<span class="headerTextOne">Hang-Man</span> - <span class="rules">Click the start button to get the game started. Use the keyboard to choose potential letters.</span>
+				<div class="row">
+				<div class="col-xs-12 col-s-12 col-md-6 col-lg-6">
+				<p class="rules">Click the start button to get the game started. Use the keyboard to choose potential letters.
+				<strong>**HINT**--</strong>The words will all be a dessert.</p>
+				</div>
+				<div class="col-xs-12 col-s-12 col-md-6 col-lg-4">
 				<img src="assets/images/startbutt.png" id="start" alt="Start">
+				</div>
 				<hr>
-				<div class="col-xs-6 col-s-6 col-md-4 col-lg-4 pull-left">
+				</div>
+				<div class="row moveDown">
+				<div class="col-xs-12 col-s-12 col-md-4 col-lg-4 pull-left">
 					<img id="pictureFix" class="imageSwitch img-responsive">
 					
 									
 				</div>
-				<div class="col-xs-6 col-s-6 col-md-4 col-lg-4 pull-left">
 				<audio class="winAudio" src="" autoplay></audio>
-				<img id="picFix" class="wonkaPicture img-responsive">
-				</div>
-
-				<div class="col-xs-12 col-s-12 col-md-4 col-lg-4 pull-right">
-					<div>
-						<p  id="wordControl">The word will appear here once you click start!</p>
-					</div>
+				
+				<div class="col-xs-12 col-s-12 col-md-6 col-lg-6 pull-right">
+						<p  id="wordControl"></p>
 					<div id="displayHtml">
 						<p>Choose a letter to determine if you can solve the word above.</p>
 						<p>Wins: 0</p>
 						<p>Losses: 0</p>
-						<p>Guesses Left: 15</p>
+						<p>Guesses Left: 8</p>
 						<p>Letters you have already chosen: </p>
 					</div>	
 					
 				</div>
+				</div>
 			</div>
 		</div>
-
+		
 			
 	</div>
 	
